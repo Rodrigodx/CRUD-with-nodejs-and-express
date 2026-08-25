@@ -10,7 +10,7 @@ const userController = {
         }
     },
 
-    async findAll(req, res) { // Corrigido: adicionado req
+    async findAll(req, res) {
         try {
             const users = await userService.findAll();
             return res.status(200).json(users);
@@ -32,7 +32,7 @@ const userController = {
     async update(req, res) {
         try {
             const { id } = req.params;
-            const updatedUser = await userService.update(id, req.body); // Corrigido: adicionado await
+            const updatedUser = await userService.update(id, req.body);
             return res.status(200).json(updatedUser);
         } catch (error) {
             if (error.message === 'Usuário não encontrado.') {
@@ -45,7 +45,7 @@ const userController = {
     async deletar(req, res) {
         try {
             const { id } = req.params;
-            await userService.delete(id); // Corrigido: userService.delete em vez de produtoService
+            await userService.delete(id);
             return res.status(204).send();
         } catch (error) {
             return res.status(404).json({ mensagem: error.message });

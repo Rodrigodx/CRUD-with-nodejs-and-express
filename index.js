@@ -3,10 +3,8 @@ const userRoutes = require('./src/routes/userRoutes');
 
 const app = express();
 
-// Middleware para interpretar JSON no corpo das requisições (req.body)
 app.use(express.json());
 
-// Registra as rotas da aplicação
 app.use(userRoutes);
 
 const PORT = 3000;

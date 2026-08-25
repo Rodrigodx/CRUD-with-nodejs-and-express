@@ -21,7 +21,7 @@ const userRepository = {
 
     async findById(id) {
         const query = 'SELECT * FROM atividade_2.users WHERE id = $1';
-        const result = await pool.query(query, [id]); // Adicionado o [id] e corrigido $1
+        const result = await pool.query(query, [id]);
         return result.rows[0];
     },
 
@@ -31,7 +31,7 @@ const userRepository = {
             SET nome = $1, idade = $2, email = $3
             WHERE id = $4
             RETURNING *
-        `; // Corrigido 'quantidade' para 'email'
+        `;
 
         const values = [user.nome, user.idade, user.email, id];
         const result = await pool.query(query, values);
@@ -39,10 +39,10 @@ const userRepository = {
     },
 
     async delete(id) {
-        const query = 'DELETE FROM atividade_2.users WHERE id = $1 RETURNING *'; // Removido o '*'
+        const query = 'DELETE FROM atividade_2.users WHERE id = $1 RETURNING *';
         const result = await pool.query(query, [id]);
         return result.rows[0];
     }
 };
 
-module.exports = userRepository; // Corrigida a digitação de userRepostory
+module.exports = userRepository;
